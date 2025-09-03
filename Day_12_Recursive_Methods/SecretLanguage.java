@@ -11,10 +11,36 @@ public class SecretLanguage {
 
         int choice = myScan.nextInt();
         myScan.nextLine();
-
         System.out.println("Enter the string: ");
         String text = myScan.nextLine();
+
+        if (choice == 1){
+            String encodedString = encode(text, 0);
+            System.out.println(encodedString);
+        } else if (choice == 2) {
+            String decodedString = decode(text, 0);
+            System.out.println(decodedString);
+        } else {
+            System.out.println("Invalid choice");
+        }
     }
+
+
+    public static String encode(String input, int index) {
+        if (index == input.length()) {
+            return "";
+        }
+        char ch = input.charAt(index);
+        char encodedChar = atbash(ch);
+
+        return encodedChar + encode(input, index + 1);
+    }
+
+
+    public static String decode(String input, int index){
+        return encode(input, index);
+    }
+
 
     public static char atbash(char ch){
         if (ch >= 'a' && ch <= 'z') {
@@ -25,4 +51,5 @@ public class SecretLanguage {
             return ch;
         }
     }
+
 }
